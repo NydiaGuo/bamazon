@@ -9,41 +9,75 @@ var connection = mysql.createConnection({
 	database: "bamazonDB"
 });
 
+//connect to the MySql
 connection.connect(function(error){
 	if (error) throw error;
-	console.log("connected as id " + connection.threadId + "\n");
 	show_proucts();
-	pick_proucts();
-
 });
 
-
+//Displays all the proucts to the customer
 function show_proucts(){
+
 	var query = "SELECT item_id,product_name,price,stock_quantity FROM products";
 	connection.query(query, function(err, res) {
-		 if (err) throw err;
+		if (err) throw err;
+		
+		for (var i = 0; i < res.length; i++) {
+		console.log("Product ID: " + res[i].item_id + "\nProduct name: " + 
+			res[i].product_name + "\nPrice: " + res[i].price + 
+			"\nStocks: " + res[i].stock_quantity +
+			"\n-------------------------------");
+		}
 
-	// Log all results of the SELECT statement
-	console.log(res);
-	connection.end();
-	// for (var i = 0; i < res.length; i++) {
-	// 	console.log("Product ID: " + res[i].id + "Product name: " + 
-	// 		res[i].product_name + "Price: " + res[i].price);
-	// }
+		pick_proucts();
 
 	});
 }
 
-
+//asks the buyer to place an order
 function pick_proucts() {
-	inquirer.prompt({
-		name:"options",
-		type:"list",
-		message:"Which product would you like to buy? Please enter a product ID"
-	}).
-	then(function(answer) {
-		connection.query("SELECT item_id FROM bamazonDB", function(err,res) {
-			console.log("you get the item_id");
-		});
+	inquirer
+		.prompt([{
+				name:"item_id",
+				type:"input",
+				message:"Which product would you like to buy? Please enter a product ID:"
+			}, 
+			{
+				name:"quantity",
+				type:"input",
+				message:"How many would you like to buy?",
+			}
+		])
+		.then(function(answer) {
+
+			var query = "SELECT * FROM products WHERE ?";
+			connection.query( query, {item_id: answer.item_id}, function(err, res) {
+				if (err) throw err;
+
+				if (answer.quantity <= res[0].stock_quantity) {
+					//updates the quantity in MySql for what the buyers just placed if the product is in stock
+					var updateQuery = "UPDATE products SET stock_quantity = " +	(res[0].stock_quantity - answer.quantity) + " WHERE item_id = " + answer.item_id;
+					connection.query(updateQuery, function(err, data){
+
+						if (err) throw err;
+						//shows the customer the total cost of their purchase
+						console.log("This product is in stock!");
+						console.log("Your oder item ID " + answer.item_id + " with " + answer.quantity + " pcs has already placed it! Your total is $: " + (res[0].price * answer.quantity));	
+						
+						connection.end();
+
+					});
+
+				} //Displays if there is not enough stock for the pruduct.
+				else {
+					console.log("sorry! Insufficient quantity! Take a look something else!");
+					console.log("===============================================================================");
+					show_proucts();
+				}
+
+			});
+
 	});
+
 }
+

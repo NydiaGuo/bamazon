@@ -13,6 +13,8 @@ CREATE TABLE products(
 );
 
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("oranges", "fruits", 0.25, 100), ("sunsreen", "beauty", 8, 100), ("toners", "beauty", 11.5, 100), ("basktball", "sports", 25.5, 100), 
-("hand cream", "beauty", 5.5, 100), ("badminton rackets", "sports", 45.5, 50), ("black panther", "movies", 0.25, 500), 
-("apples", "fruits", 0.35, 100), ("body loction", "beauty", 0.25, 500), ("dragon fruit", "fruits", 0.45, 100);
+VALUES ("oranges", "fruits", 0.25, 100), ("sunsreen", "beauty", 8, 100), 
+("toners", "beauty", 11.5, 100), ("basktball", "sports", 25.5, 100), 
+("hand cream", "beauty", 5.5, 100), ("badminton rackets", "sports", 45.5, 100), 
+("black panther", "movies", 25, 500), ("apples", "fruits", 0.35, 100), 
+("body loction", "beauty", 0.25, 500), ("dragon fruit", "fruits", 0.45, 100);
