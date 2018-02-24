@@ -160,7 +160,7 @@ function addNewProduct() {
 				console.log("You successfully added" + res.stock_quantity + res.product_name + "!");
 
 			});
-			connection.end();
+			
 		});
  
 }
