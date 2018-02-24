@@ -20,6 +20,8 @@ You should have MySQL database set up on your computer in order to run this APP.
 
 	- If the item is not in stock, it will tell `Insufficient quantity!`
 
+![View products for sale](images/customer.gif)
+
 ### Bamazon Manager Interface
 Bamazon manager interface allows users to view, change or edit the inventory for any products. The users will see the options as the following:
 
@@ -27,10 +29,13 @@ Bamazon manager interface allows users to view, change or edit the inventory for
 ![View products for sale](images/view.gif)
 
 * View low inventory
+![View products for sale](images/viewLow.gif)
 
 * Add to inventory
+![View products for sale](images/addStock.gif)
 
 * Add a new product
+![View products for sale](images/addNew.gif)
 
 
 

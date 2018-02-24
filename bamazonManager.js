@@ -87,8 +87,7 @@ function viewLowInventory() {
 	
 }
 
-
-//If a manager selects `Add to Inventory`, it displays a prompt that let the manager 
+//If a manager selects "Add to Inventory", it displays a prompt that let the manager 
 // add more of any item currently in the store
  function addInventory(){
 	inquirer
