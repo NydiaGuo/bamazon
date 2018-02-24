@@ -61,8 +61,7 @@ function viewProucts(){
 				"\nStocks: " + res[i].stock_quantity +
 				"\n-------------------------------");
 			}
-
-		managerInput();
+			managerInput();
 
 		});
 }
@@ -82,11 +81,9 @@ function viewLowInventory() {
 						"\n-------------------------------");
 				}
 			}
-
-		managerInput();
-
+			managerInput();
 		});
-
+	
 }
 
 
@@ -104,6 +101,7 @@ function viewLowInventory() {
 			message:"How many would you like to add?"
 		}])
 		.then(function(answer){
+
 			var query = "UPDATE products SET ? WHERE ?" 
 			connection.query(query, [{
 						item_id:answer.id
@@ -114,14 +112,18 @@ function viewLowInventory() {
 				], 
 				function(err, res) {
 				if (err) throw err;
-				console.log("Successfully added!");
-				
-			});
+				console.log(res);
 
-			managerInput();
+			// var updateQuery = "UPDATE products SET stock_quantity = " +	
+			// (res[0].stock_quantity + answer.quantity) + 
+			// " WHERE item_id = " + answer.item_id;
+			
+				console.log("Successfully added!");
+				managerInput();
+			});
+			
 		});
  }
-
 
 // It allows the manager to add a completely new product to the store.
 function addNewProduct() {
