@@ -1,6 +1,6 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
-
+//connect to the MySql
 var connection = mysql.createConnection({
 	host: "localhost",
 	port: 3306,
@@ -9,7 +9,6 @@ var connection = mysql.createConnection({
 	database: "bamazonDB"
 });
 
-//connect to the MySql
 connection.connect(function(error){
 	if (error) throw error;
 	show_proucts();
@@ -77,7 +76,7 @@ function pick_proucts() {
 
 			});
 
-	});
+		});
 
 }
 
