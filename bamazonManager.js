@@ -63,7 +63,6 @@ function viewProucts(){
 			"\n-------------------------------");
 		}
 		managerInput();
-
 	});
 }
 
@@ -87,8 +86,7 @@ function viewLowInventory() {
 	
 }
 
-//If a manager selects "Add to Inventory", it displays a prompt that let the manager 
-// add more of any item currently in the store
+//If a manager selects "Add to Inventory", it displays a prompt that let the manager add more of any item currently in the store
  function addInventory(){
 	inquirer
 		.prompt([{
@@ -155,6 +153,7 @@ function addNewProduct() {
 
 			}, function(err, res) {
 				if (err) throw err;
+
 				viewLowInventory();
 				console.log("You successfully added" + res.stock_quantity + res.product_name + "!");
 

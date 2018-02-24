@@ -37,7 +37,3 @@ Bamazon manager interface allows users to view, change or edit the inventory for
 * Add a new product
 ![View products for sale](images/addNew.gif)
 
-
-
-
-
